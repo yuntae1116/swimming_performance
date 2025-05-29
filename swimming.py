@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
@@ -17,40 +11,32 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.neural_network import MLPRegressor
 from scipy.stats import randint, uniform
-import warnings
-warnings.filterwarnings('ignore')
 from sklearn.metrics import mean_absolute_error
 import seaborn as sns
-import plotly.express as px
-import pycountry
 
 
-# In[2]:
+
 
 
 df = pd.read_csv("longitudinal_athlete_data_with_RT_corrected.csv")
 
 
-# In[3]:
 
 
 df_cleaned = df.loc[:, ~df.columns.str.contains("^Unnamed")]  
 df_cleaned = df_cleaned.dropna()  
 
 
-# In[4]:
 
 
 df_cleaned.head(3)
 
 
-# In[5]:
 
 
 df_cleaned.describe()
 
 
-# In[6]:
 
 
 df_cleaned = df_cleaned[[
@@ -60,20 +46,17 @@ df_cleaned = df_cleaned[[
 df_cleaned = df_cleaned.sort_values(by=["Athlete", "Year"]).reset_index(drop=True)
 df_cleaned["100m CT"] = pd.to_numeric(df_cleaned["100m CT"], errors="coerce")
 
-# 2년 이상 출전 선수 필터링
 athlete_years = df_cleaned.groupby("Athlete")["Year"].nunique().reset_index()
 athlete_years.columns = ["Athlete", "Num_Years"]
 df_with_counts = df_cleaned.merge(athlete_years, on="Athlete")
 df_long = df_with_counts[df_with_counts["Num_Years"] >= 2]
 
 
-# In[9]:
 
 
 df_long.describe()
 
 
-# In[17]:
 
 
 df_age_perf = df_long.dropna(subset=["Age", "100m CT"])
@@ -87,7 +70,6 @@ X_poly = poly.fit_transform(X_age)
 model_poly = LinearRegression().fit(X_poly, y_time)
 
 
-# In[18]:
 
 
 beta_0 = model_poly.intercept_
@@ -95,13 +77,11 @@ beta_1, beta_2 = model_poly.coef_[1], model_poly.coef_[2]
 peak_age = -beta_1 / (2 * beta_2)
 
 
-# In[19]:
 
 
 print(beta_0, beta_1, beta_2)
 
 
-# In[20]:
 
 
 age_range = np.linspace(df_age_perf["Age"].min(), df_age_perf["Age"].max(), 300).reshape(-1, 1)
@@ -109,7 +89,6 @@ age_range_poly = poly.transform(age_range)
 predicted_times = model_poly.predict(age_range_poly)
 
 
-# In[21]:
 
 
 print("===== Aging Curve Analysis (Polynomial Regression) =====")
@@ -118,27 +97,21 @@ print(f"RMSE: {np.sqrt(mean_squared_error(y_time, model_poly.predict(X_poly))):.
 print(f"R^2: {r2_score(y_time, model_poly.predict(X_poly)):.3f}")
 
 
-# In[22]:
 
 
 plt.figure(figsize=(10, 6))
 
-# 점: 연한 파랑 + 경계선 검정
 plt.scatter(
     df_age_perf["Age"],
     df_age_perf["100m CT"],
     alpha=0.5,
-    color="#1f77b4",         # 밝은 파랑
-    edgecolors="black",      # 경계선 검정색
     linewidth=0.3,
     label="Individual Records"
 )
 
-# 회귀선: 진한 빨강 + 굵게
 plt.plot(
     age_range,
     predicted_times,
-    color="#d62728",          # 진한 빨강
     linewidth=2.5,
     label="Aging Curve (Polynomial Fit)"
 )
@@ -153,7 +126,6 @@ plt.tight_layout()
 plt.show()
 
 
-# In[23]:
 
 
 selected_features = ["Age", "Lane", "Country", "Final/Heat", 'RT']
@@ -169,7 +141,6 @@ y_all = df_model[target]
 X_train, X_test, y_train, y_test = train_test_split(X_all, y_all, test_size=0.2, random_state=42)
 
 
-# In[27]:
 
 
 # Model definitions
@@ -185,6 +156,12 @@ models = {
         "max_depth": randint(3, 10)
     }),
     "MLP Regressor": (MLPRegressor(max_iter=1000), {
+        "hidden_layer_sizes": [(100,), (100, 50), (128, 64)],
+        "activation": ['relu', 'tanh'],
+        "alpha": uniform(0.0001, 0.01),
+        "learning_rate_init": uniform(0.001, 0.01),
+        "batch_size": [32, 64, 128]
+    }),
         "hidden_layer_sizes": [(100,), (100, 50)],
         "alpha": uniform(0.0001, 0.01),
         "learning_rate_init": uniform(0.001, 0.01)
@@ -193,7 +170,6 @@ models = {
 cv = KFold(n_splits=5, shuffle=True, random_state=42)
 
 
-# In[42]:
 
 
 cv = KFold(n_splits=5, shuffle=True, random_state=42)
@@ -214,7 +190,6 @@ for name, (model, params) in models.items():
     results.append((name, mae, rmse, r2))
 
 
-# In[43]:
 
 
 print("\n===== Model Performance on Test Set (CV-tuned) =====")
@@ -222,10 +197,8 @@ for name, mae, rmse, r2 in results:
     print(f"{name}: MAE= {mae: .3f}, RMSE = {rmse:.3f}, R² = {r2:.3f}")
 
 
-# In[28]:
 
 
-# models 딕셔너리에서 gbm만 불러와 재학습
 gbm_model, gbm_params = models["Gradient Boosting"]
 search = RandomizedSearchCV(gbm_model, gbm_params, n_iter=100, cv=cv,
                             scoring="r2", random_state=42, n_jobs=-1)
@@ -235,7 +208,6 @@ best_gbm_model = search.best_estimator_
 importances = best_gbm_model.feature_importances_
 
 
-# In[30]:
 
 
 feature_names = X_train.columns
@@ -259,14 +231,12 @@ def _merge_name(col):
 
 importance_df["Feature"] = importance_df["Feature"].apply(_merge_name)
 
-# ③ 동일 Feature 중요도 합산 후 정렬
 importance_df = (importance_df
                  .groupby("Feature", as_index=False)["Importance"]
                  .sum()
                  .sort_values("Importance", ascending=False))
 
 # ──────────────────────────────────────────────
-# ④ 시각화
 plt.figure(figsize=(8, 6))
 sns.barplot(x="Importance", y="Feature", data=importance_df, palette="viridis")
 # plt.title("Feature Importances from GBM")
@@ -277,7 +247,6 @@ plt.savefig('feature_importance.png', dpi = 300)
 plt.show()
 
 
-# In[31]:
 
 
 y_train_pred = best_gbm_model.predict(X_train)
@@ -301,7 +270,6 @@ plt.savefig('prediction_error_swimming.png', dpi = 300)
 plt.show()
 
 
-# In[14]:
 
 
 country_stats = df_long.groupby('Country').agg(
@@ -314,7 +282,6 @@ country_stats = df_long.groupby('Country').agg(
 ).reset_index()
 
 
-# In[15]:
 
 
 def to_iso3(code):
@@ -327,7 +294,6 @@ country_stats['iso_alpha'] = country_stats['Country'].str.upper().apply(to_iso3)
 country_stats = country_stats.dropna(subset=['iso_alpha'])
 
 
-# In[19]:
 
 
 import pandas as pd
@@ -335,7 +301,6 @@ import pycountry
 import plotly.express as px
 from typing import Optional
 
-# IOC → ISO-3 예외 매핑
 ioc2iso = {
     "RSA": "ZAF", "NED": "NLD", "GER": "DEU", "SUI": "CHE", "TPE": "TWN",
     "HKG": "HKG", "URU": "URY", "PRK": "PRK", "CZE": "CZE", "SVK": "SVK",
@@ -350,36 +315,29 @@ def to_iso3(code: str) -> Optional[str]:
     code = ioc2iso.get(code, code)
     return code if code in all_iso3 else None
 
-# 1. 데이터 불러오기 및 열 정리
 swim = pd.read_csv("longitudinal_athlete_data_with_RT_corrected.csv")
 swim.columns = swim.columns.str.strip()
 
-# 2. '100m CT'를 float으로 변환
 swim["100m CT"] = pd.to_numeric(swim["100m CT"], errors="coerce")
 swim = swim.dropna(subset=["100m CT"])
 
-# 3. 2경기 이상 출전 선수만 필터링
 multi_mask = swim["Athlete"].value_counts()
 swim = swim[swim["Athlete"].isin(multi_mask[multi_mask >= 2].index)]
 
-# 4. ISO 코드 매핑
 swim["iso_alpha"] = swim["Country"].apply(to_iso3)
 swim = swim.dropna(subset=["iso_alpha"])
 
-# 5. 국가별 평균 기록 계산 (초 단위)
 country_stats = swim.groupby("iso_alpha", as_index=False).agg(
     mean_time=("100m CT", "mean"),
     Country=("Country", "first")
 )
 
-# 6. 전 세계 ISO-3 포함된 병합 프레임 생성
 world = pd.DataFrame({"iso_alpha": sorted(all_iso3)})
 merged = world.merge(
     country_stats[["iso_alpha", "Country", "mean_time"]],
     on="iso_alpha", how="left"
 )
 
-# 7. Choropleth 시각화 (범위: 46~50초)
 fig = px.choropleth(
     merged,
     locations="iso_alpha",
@@ -394,7 +352,6 @@ fig.update_geos(showcoastlines=True, showcountries=True)
 fig.show()
 
 
-# In[11]:
 
 
 import matplotlib.cm as cm
@@ -409,7 +366,6 @@ df['100m_s'] = df['100m_CT'] / 100
 multi_athletes = df['Athlete'].value_counts()
 df_long = df[df['Athlete'].isin(multi_athletes[multi_athletes >= 2].index)]
 
-# ISO 코드 변환
 ioc2iso = {"RSA": "ZAF"}
 all_iso3 = {c.alpha_3 for c in pycountry.countries}
 def to_iso3(code):
@@ -419,7 +375,6 @@ def to_iso3(code):
 
 df_long['iso_alpha'] = df_long['Country'].apply(to_iso3)
 
-# -------- 파이 차트용 데이터 --------
 threshold = df_long["100m_s"].quantile(0.10)
 top_performers = df_long[df_long["100m_s"] <= threshold]
 top_record_counts = top_performers["iso_alpha"].value_counts()
@@ -432,7 +387,6 @@ if other_count > 0:
 
 pie_labels = ["RSA" if iso == "ZAF" else iso for iso in pie_data.index]
 
-# -------- 파이 차트 시각화 --------
 colors = list(cm.tab20.colors[:len(pie_data)-1]) + ['#999999']
 fig1, ax1 = plt.subplots(figsize=(6, 6))
 ax1.pie(
@@ -449,7 +403,6 @@ plt.savefig("pie_chart_swimming.png", dpi=300)
 plt.show()
 
 
-# In[17]:
 
 
 ordered_iso = [iso for iso in pie_data.index if iso != "Other"]
@@ -473,7 +426,6 @@ summary_df["GDP Rank"] = summary_df["iso_alpha"].map(
 summary_df = summary_df.set_index("iso_alpha").loc[ordered_iso].reset_index()
 rankrank_df = summary_df.rename(columns={"iso_alpha": "ISO3"})
 
-# -------- Rank-Rank Plot 시각화 --------
 x_vals = rankrank_df["GDP Rank"].values
 y_vals = rankrank_df["Swim_Rank"].values
 rank_labels = ["RSA" if iso == "ZAF" else iso for iso in rankrank_df["ISO3"]]
