@@ -3,7 +3,7 @@
 
 This repository contains the code and analysis for the paper titled:
 
-**"Performance Prediction in Men's 100m Freestyle Using Machine Learning: Importance of Age and National Economic Status"**
+**"Machine Learning-Based Prediction of Performance in Men’s 100m Freestyle Swimming: Roles of Age and National Economy"**
 
 ## Overview
 
