@@ -11,15 +11,15 @@ This project applies machine learning models to predict elite swimming performan
 
 ## Contents
 
-- `swimming_aging_curve.ipynb`: Jupyter notebook with model training, evaluation, and visualization.
-- `data/`: Directory for required datasets (not included here).
-- `figures/`: Suggested directory to store result plots and figures.
-- `requirements.txt`: Required Python packages.
+- `swimming.py`: Main script for running experiments.
+- `fake_data/`: Directory containing required dataset files (e.g., `fake_athlete_data.csv`).
+- `requirements.txt`: List of required Python packages.
+- `README.md`: Project overview and usage instructions.
 
 ## Usage
 
 1. Clone this repository.
-2. Place the required datasets in the `data/` directory.
+2. Place the `fake_data.csv` file in the `data/` directory.
 3. Run the notebook using Jupyter.
 
 ## Requirements
