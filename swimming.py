@@ -44,37 +44,6 @@ beta_1, beta_2 = model_poly.coef_[1], model_poly.coef_[2]
 peak_age = -beta_1 / (2 * beta_2)
 print(beta_0, beta_1, beta_2)
 
-age_range = np.linspace(df_age_perf["Age"].min(), df_age_perf["Age"].max(), 300).reshape(-1, 1)
-age_range_poly = poly.transform(age_range)
-predicted_times = model_poly.predict(age_range_poly)
-print("===== Aging Curve Analysis (Polynomial Regression) =====")
-print(f"Peak Age: {peak_age:.2f}")
-print(f"RMSE: {np.sqrt(mean_squared_error(y_time, model_poly.predict(X_poly))):.3f}")
-print(f"R^2: {r2_score(y_time, model_poly.predict(X_poly)):.3f}")
-
-plt.figure(figsize=(10, 6))
-plt.scatter(
-    df_age_perf["Age"],
-    df_age_perf["100m CT"],
-    alpha=0.5,
-    linewidth=0.3,
-    label="Individual Records"
-)
-plt.plot(
-    age_range,
-    predicted_times,
-    linewidth=2.5,
-    label="Aging Curve (Polynomial Fit)"
-)
-plt.xlabel("Age", fontsize=12)
-plt.ylabel("Record", fontsize=12)
-# plt.title("Aging Curve for Male 100m Freestyle", fontsize=14)
-plt.legend()
-plt.grid(True, linestyle="--", alpha=0.6)
-plt.tight_layout()
-# plt.savefig("aging_curve.png", dpi=300)
-plt.show()
-
 selected_features = ["Age", "Lane", "Country", "Final/Heat", 'RT']
 target = "100m CT"
 
