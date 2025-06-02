@@ -12,7 +12,7 @@ This project applies machine learning models to predict elite swimming performan
 ## Contents
 
 - `swimming.py`: Main script for running experiments.
-- `fake_data/`: Directory containing required dataset files (e.g., `fake_athlete_data.csv`).
+- `fake_data`: Required dataset file. 
 - `requirements.txt`: List of required Python packages.
 - `README.md`: Project overview and usage instructions.
 
