@@ -1,0 +1,101 @@
+Athlete,Year,Event Type,Final/Heat,Country,Age,gender,Rank,Lane,100m CT,RT
+Jo,19,World Cup,F,JPN,16,m,3,7,46.17,0.612
+Lee,29,Junior,F,USA,20,m,5,7,45.46,0.739
+Ju,21,Series,F,AUS,26,m,9,6,49.41,0.679
+Jo,21,Junior,H,KOR,23,m,3,1,48.13,0.702
+Jo,32,Junior,H,AUS,25,m,8,6,53.88,0.679
+Lee,30,Junior,F,USA,28,m,4,4,45.69,0.667
+Ju,34,Series,F,AUS,23,m,1,2,51.04,0.651
+Kim,23,Olympic,H,USA,15,m,7,2,45.39,0.658
+Ju,33,Series,H,AUS,23,m,7,5,53.79,0.545
+Kim,29,Olympic,F,USA,19,m,6,3,54.39,0.69
+Kim,22,Series,F,JPN,15,m,2,4,49.99,0.762
+Ju,34,Series,F,AUS,24,m,6,6,54.53,0.627
+Lee,18,25m,F,USA,25,m,4,7,47.68,0.599
+Ju,27,Olympic,H,AUS,20,m,1,2,49.34,0.735
+Lee,32,25m,H,AUS,22,m,3,5,47.72,0.681
+Ju,28,Youth Olympic,F,USA,12,m,7,1,47.24,0.705
+Lee,30,25m,H,JPN,25,m,6,7,53.19,0.687
+Lee,22,Junior,F,USA,24,m,2,4,48.71,0.623
+Lee,18,World Championships,H,JPN,21,m,7,7,45.67,0.705
+Ju,29,World Championships,F,JPN,15,m,3,2,54.51,0.642
+Jo,28,World Cup,F,JPN,14,m,7,2,53.02,0.627
+Ju,34,World Cup,H,JPN,29,m,9,4,45.75,0.693
+Kim,21,25m,F,JPN,16,m,2,3,46.12,0.672
+Lee,32,Series,H,AUS,21,m,2,2,46.39,0.683
+Kim,26,Series,F,USA,16,m,2,4,45.6,0.681
+Jo,29,World Championships,F,USA,11,m,8,7,50.91,0.702
+Ju,22,Junior,H,JPN,22,m,1,1,48.58,0.723
+Lee,27,Olympic,F,AUS,23,m,9,3,53.19,0.674
+Lee,34,Junior,H,AUS,14,m,3,4,46.87,0.729
+Ju,22,Junior,H,AUS,25,m,9,6,46.35,0.715
+Jo,33,25m,F,JPN,18,m,10,2,50.14,0.698
+Lee,24,25m,F,JPN,16,m,4,1,54.75,0.639
+Jo,26,Youth Olympic,F,JPN,16,m,5,8,48.91,0.708
+Jo,20,Junior,H,USA,24,m,6,1,54.97,0.684
+Ju,32,Series,H,USA,12,m,8,8,54.18,0.604
+Ju,33,Series,F,JPN,15,m,9,7,49.29,0.611
+Ju,31,Junior,H,USA,22,m,6,4,53.79,0.61
+Jo,20,25m,F,JPN,22,m,10,8,52.25,0.611
+Kim,29,25m,F,KOR,16,m,8,7,51.7,0.615
+Kim,26,Youth Olympic,H,JPN,26,m,1,8,46.6,0.702
+Ju,24,Youth Olympic,F,USA,16,m,6,1,45.63,0.668
+Jo,26,World Cup,H,AUS,20,m,10,4,51.08,0.704
+Ju,30,World Championships,F,AUS,19,m,6,1,53.22,0.614
+Lee,22,Junior,F,JPN,19,m,2,4,51.08,0.595
+Jo,30,Series,H,USA,20,m,6,6,53.26,0.626
+Jo,21,Junior,H,JPN,19,m,8,5,52.54,0.696
+Jo,19,Youth Olympic,F,KOR,19,m,3,5,48.79,0.698
+Lee,33,Youth Olympic,H,USA,20,m,3,4,47.8,0.654
+Kim,26,World Cup,F,JPN,25,m,8,3,47.06,0.679
+Kim,26,World Championships,F,USA,19,m,7,3,54.37,0.642
+Lee,23,World Cup,F,KOR,23,m,7,4,54.22,0.632
+Kim,28,Series,F,AUS,21,m,6,8,52.9,0.682
+Ju,18,World Championships,F,KOR,22,m,10,4,47.42,0.694
+Kim,21,Olympic,H,JPN,24,m,8,6,54.27,0.745
+Lee,30,Junior,F,AUS,16,m,10,7,51.98,0.62
+Lee,30,World Cup,H,AUS,23,m,8,8,54.22,0.614
+Ju,30,Youth Olympic,F,USA,20,m,10,1,52.45,0.642
+Lee,19,World Cup,F,JPN,16,m,4,4,52.67,0.692
+Jo,26,Olympic,H,USA,24,m,6,8,53.63,0.754
+Ju,25,World Cup,H,KOR,19,m,9,3,49.03,0.671
+Lee,24,Junior,H,KOR,22,m,1,5,48.18,0.626
+Lee,21,Olympic,H,USA,9,m,9,3,50.16,0.613
+Jo,20,Youth Olympic,H,AUS,23,m,2,2,47.37,0.638
+Ju,23,Youth Olympic,F,JPN,31,m,6,5,51.49,0.675
+Ju,29,25m,H,KOR,20,m,3,4,53.02,0.696
+Jo,29,Olympic,H,KOR,19,m,5,6,51.06,0.674
+Lee,25,25m,H,JPN,19,m,3,4,46.84,0.632
+Kim,18,25m,F,JPN,23,m,6,5,49.53,0.606
+Jo,21,Junior,H,USA,19,m,6,2,54.06,0.694
+Ju,28,World Cup,F,KOR,23,m,3,2,47.09,0.64
+Jo,20,Youth Olympic,H,JPN,28,m,1,7,53.03,0.643
+Ju,30,Youth Olympic,F,KOR,24,m,4,2,53.95,0.619
+Ju,34,World Cup,F,USA,20,m,2,6,53.52,0.595
+Lee,27,Youth Olympic,F,AUS,16,m,2,3,48.69,0.738
+Kim,29,World Cup,H,USA,19,m,1,2,45.52,0.635
+Jo,32,Olympic,F,JPN,20,m,6,7,54.4,0.576
+Ju,27,Junior,F,USA,15,m,6,7,46.83,0.672
+Ju,31,Junior,F,AUS,25,m,5,1,47.68,0.658
+Jo,30,Series,F,USA,23,m,2,8,45.25,0.581
+Kim,22,Junior,F,KOR,16,m,10,1,48.23,0.716
+Kim,23,World Cup,H,JPN,13,m,8,4,47.67,0.694
+Kim,19,Series,F,USA,23,m,8,4,52.1,0.702
+Jo,34,World Cup,H,USA,14,m,3,8,49.16,0.676
+Ju,21,World Championships,H,JPN,21,m,3,5,54.23,0.606
+Lee,31,Series,F,JPN,19,m,9,6,47.83,0.662
+Kim,27,Youth Olympic,F,KOR,24,m,1,7,45.79,0.643
+Lee,20,Youth Olympic,F,KOR,24,m,1,4,52.93,0.635
+Ju,20,World Championships,F,AUS,17,m,1,6,50.13,0.738
+Jo,32,World Championships,F,KOR,24,m,5,6,47.21,0.62
+Ju,23,Junior,H,AUS,19,m,3,2,54.61,0.644
+Kim,34,World Championships,H,USA,20,m,2,6,45.69,0.666
+Kim,29,World Cup,F,KOR,21,m,10,3,45.7,0.682
+Ju,28,25m,H,AUS,30,m,6,7,52.21,0.74
+Jo,21,World Cup,H,AUS,20,m,6,7,53.17,0.657
+Jo,23,Series,F,AUS,14,m,6,3,52.71,0.678
+Kim,18,World Championships,F,AUS,17,m,8,7,48.22,0.61
+Jo,33,Youth Olympic,H,JPN,23,m,5,5,51.8,0.69
+Kim,32,World Cup,H,USA,19,m,7,8,50.79,0.751
+Jo,34,Youth Olympic,F,KOR,20,m,9,6,54.15,0.645
+Ju,25,World Cup,H,AUS,19,m,10,8,48.09,0.7
