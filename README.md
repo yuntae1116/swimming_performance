@@ -33,6 +33,7 @@ pip install -r requirements.txt
 ## Citation
 
 If you use this code, please cite the corresponding manuscript.
+[![DOI] https://doi.org/10.5281/zenodo.15588693
 
 ## License
 
